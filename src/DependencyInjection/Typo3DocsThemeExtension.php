@@ -39,20 +39,21 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             $definition->addTag('phpdoc.guides.noderenderer.html');
 
             $container->setDefinition('phpdoc.guides.rst.' . substr(strrchr($node, '\\') ?: '', 1), $definition);
-            $definition = new Definition(
-                Typo3DocsThemeSettings::class,
-                [
-                    '$settings' => [
-                        'typo3_version' => $configs[1]['typo3_version'] ?? 'main',
-                        'edit_on_github' => $configs[1]['edit_on_github'] ?? '',
-                        'edit_on_github_branch' => $configs[1]['edit_on_github_branch'] ?? 'main',
-                        'how_to_edit' => $configs[1]['how_to_edit'] ?? 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html',
-                        'copy_sources' => $configs[1]['copy_sources'] ?? 'true',
-                    ],
-                ],
-            );
-            $container->setDefinition(Typo3DocsThemeSettings::class, $definition);
         }
+
+        $definition = new Definition(
+            Typo3DocsThemeSettings::class,
+            [
+                '$settings' => [
+                    'typo3_version' => $configs[1]['typo3_version'] ?? 'main',
+                    'edit_on_github' => $configs[1]['edit_on_github'] ?? '',
+                    'edit_on_github_branch' => $configs[1]['edit_on_github_branch'] ?? 'main',
+                    'how_to_edit' => $configs[1]['how_to_edit'] ?? 'https://docs.typo3.org/m/typo3/docs-how-to-document/main/en-us/WritingDocsOfficial/GithubMethod.html',
+                    'copy_sources' => $configs[1]['copy_sources'] ?? 'true',
+                ],
+            ],
+        );
+        $container->setDefinition(Typo3DocsThemeSettings::class, $definition);
     }
 
     public function prepend(ContainerBuilder $container): void
