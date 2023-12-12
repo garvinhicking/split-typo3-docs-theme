@@ -27,13 +27,14 @@ final class TwigExtension extends AbstractExtension
         private readonly Typo3DocsThemeSettings $themeSettings,
         private readonly DocumentNameResolverInterface $documentNameResolver,
     ) {
-        if (getenv('CI') !== '') {
+        if (getenv('CI') !== '' && !isset($_ENV['CI_PHPUNIT'])) {
             // CI gets special treatment, then we use a fixed URI for assets.
             // The environment variable 'typo3AzureEdgeURIVersion' is set during
             // the creation of our Docker image, and holds the last pushed version
             // number. This version number will then only be utilized in CI GitHub Action
             // executions, and sets links to resources/assets to a public CDN.
             // Outside CI (and for local development) all Assets are linked locally.
+            // This is prevented when being run within PHPUnit.
             $this->typo3AzureEdgeURI = 'https://typo3.azureedge.net/typo3docs/' . getenv('typo3AzureEdgeURIVersion');
         }
     }
