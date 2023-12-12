@@ -39,9 +39,6 @@ class Typo3DocsThemeExtension extends Extension implements PrependExtensionInter
             $definition->addTag('phpdoc.guides.noderenderer.html');
 
             $container->setDefinition('phpdoc.guides.rst.' . substr(strrchr($node, '\\') ?: '', 1), $definition);
-        }
-
-        if (is_array($configs[1])) {
             $definition = new Definition(
                 Typo3DocsThemeSettings::class,
                 [
