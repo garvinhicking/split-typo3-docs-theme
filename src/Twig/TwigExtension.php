@@ -35,7 +35,8 @@ final class TwigExtension extends AbstractExtension
             // executions, and sets links to resources/assets to a public CDN.
             // Outside CI (and for local development) all Assets are linked locally.
             // This is prevented when being run within PHPUnit.
-            $this->typo3AzureEdgeURI = 'https://typo3.azureedge.net/typo3docs/' . getenv('typo3AzureEdgeURIVersion');
+            // TODO: Check in which GHA this is actually performed. Simulate with my own host.
+            $this->typo3AzureEdgeURI = 'https://typo3.azureedge.net/typo3documentation/theme/render-guides/' . getenv('typo3AzureEdgeURIVersion');
         }
     }
 
